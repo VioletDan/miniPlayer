@@ -131,14 +131,14 @@ new Vue({
       }
 
       // this is optional (for preload covers)
-      for (let index = 0; index < this.tracks.length; index++) {
-        const element = this.tracks[index]
-        let link = document.createElement('link')
-        link.rel = 'prefetch'
-        link.href = element.cover
-        link.as = 'image'
-        document.head.appendChild(link)
-      }
+      // for (let index = 0; index < this.tracks.length; index++) {
+      //   const element = this.tracks[index]
+      //   let link = document.createElement('link')
+      //   link.rel = 'prefetch'
+      //   link.href = element.cover
+      //   link.as = 'image'
+      //   document.head.appendChild(link)
+      // }
     },
     play() {
       if (this.audio.paused) {
@@ -196,7 +196,7 @@ new Vue({
     },
     prevTrack() {
       this.transitionName = 'scale-in'
-      this.isShowCover = false
+      // this.isShowCover = false
       if (this.currentTrackIndex > 0) {
         this.currentTrackIndex--
       } else {
@@ -207,7 +207,7 @@ new Vue({
     },
     nextTrack() {
       this.transitionName = 'scale-out'
-      this.isShowCover = false
+      // this.isShowCover = false
       if (this.currentTrackIndex < this.tracks.length - 1) {
         this.currentTrackIndex++
       } else {
