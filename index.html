@@ -21,7 +21,7 @@
               :style="{ backgroundImage: `url(${track.cover})` }" v-for="(track, $index) in tracks" :key="$index"></div>
           </transition-group>
         </div>
-        <div class="player-controls">
+        <div class="player-controls" v-if="currentTrack">
           <div class="player-controls__item -favorite" :class="{ active : currentTrack.favorited }" @click="favorite">
             <svg class="icon">
               <use xlink:href="#icon-heart-o"></use>
@@ -65,9 +65,9 @@
       </div>
       <div v-cloak></div>
     </div>
-    <a href="https://github.com/muhammederdem/mini-player" target="_blank" class="github-btn">
+    <!-- <a href="https://github.com/muhammederdem/mini-player" target="_blank" class="github-btn">
       See on GitHub
-    </a>
+    </a> -->
   </div>
 
   <svg xmlns="http://www.w3.org/2000/svg" hidden xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -164,8 +164,12 @@
       </symbol>
     </defs>
   </svg>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script src="./scripts/PxLoader.js"></script>
+  <script src="./scripts/PxLoaderImage.js"></script>
   <script src="./scripts/script.js"></script>
+  <!-- <script src="./scripts/vConsole.min.js"></script> -->
 </body>
 
 </html>
