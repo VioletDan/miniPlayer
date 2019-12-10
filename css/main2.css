@@ -1,12 +1,12 @@
 @font-face {
   font-family: 'iconfont'; /* project id 1553658 */
-  src: url('//at.alicdn.com/t/font_1553658_jo0vx8w1zw.eot');
-  src: url('//at.alicdn.com/t/font_1553658_jo0vx8w1zw.eot?#iefix')
+  src: url('//at.alicdn.com/t/font_1553658_r5bjapk1f2b.eot');
+  src: url('//at.alicdn.com/t/font_1553658_r5bjapk1f2b.eot?#iefix')
       format('embedded-opentype'),
-    url('//at.alicdn.com/t/font_1553658_jo0vx8w1zw.woff2') format('woff2'),
-    url('//at.alicdn.com/t/font_1553658_jo0vx8w1zw.woff') format('woff'),
-    url('//at.alicdn.com/t/font_1553658_jo0vx8w1zw.ttf') format('truetype'),
-    url('//at.alicdn.com/t/font_1553658_jo0vx8w1zw.svg#iconfont') format('svg');
+    url('//at.alicdn.com/t/font_1553658_r5bjapk1f2b.woff2') format('woff2'),
+    url('//at.alicdn.com/t/font_1553658_r5bjapk1f2b.woff') format('woff'),
+    url('//at.alicdn.com/t/font_1553658_r5bjapk1f2b.ttf') format('truetype'),
+    url('//at.alicdn.com/t/font_1553658_r5bjapk1f2b.svg#iconfont') format('svg');
 }
 .iconfont {
   font-family: 'iconfont' !important;
@@ -16,21 +16,23 @@
   -webkit-text-stroke-width: 0.2px;
   -moz-osx-font-smoothing: grayscale;
 }
-
+.icon-xiai::before {
+  content: '\e60b';
+}
 .icon-fenxiang::before {
   content: '\e628';
 }
 .icon-yduishangyiqu::before {
-  content: '\xe60d';
+  content: '\e60d';
 }
 .icon-yduixiayiqu::before {
-  content: '\xe6a1';
+  content: '\e6a1';
 }
 .icon-zanting::before {
-  content: '\xe60c';
+  content: '\e606';
 }
 .icon-bofang::before {
-  content: '\xe606';
+  content: '\e60c';
 }
 body {
   background: #dfe7ef;
@@ -114,6 +116,112 @@ body {
   position: absolute;
   border-radius: 15px;
 }
+.playerTop .control {
+  width: 85%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  text-align: center;
+  margin: 15px auto 0;
+}
+.playerTop .control .control-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 32px;
+  height: 32px;
+  position: relative;
+}
+.playerTop .control .favorite.active .iconfont {
+  color: red;
+  animation: move 1s ease-out both;
+}
+@keyframes move {
+  0% {
+    transform: scale(0.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.playerTop .control .control-item .iconfont {
+  font-size: 24px;
+  color: #acb8cc;
+}
+.playerTop .control .common-item .iconfont {
+  font-size: 32px;
+}
+.playerTop .control .playBtn .iconfont {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.playerProgress {
+  width: 95%;
+  margin: 10px auto 0;
+}
+.playerProgress .progressTop {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.playerProgress .progressTop .albumInfo {
+  color: #71829e;
+  flex: 1;
+  padding-right: 60px;
+  user-select: none;
+  overflow: hidden;
+}
+.playerProgress .progressTop .albumInfo > div {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.playerProgress .progressTop .name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 9px;
+  line-height: 1.3em;
+}
+.playerProgress .progressTop .track {
+  font-weight: 400;
+  font-size: 18px;
+  opacity: 0.7;
+  line-height: 1.3em;
+  min-height: 50px;
+}
+.playerProgress .progressTop .duration {
+  color: #71829e;
+  font-weight: 700;
+  font-size: 20px;
+  opacity: 0.5;
+}
+
+.playerProgress .progressbar {
+  height: 6px;
+  width: 100%;
+  cursor: pointer;
+  background-color: #d0d8e6;
+  display: inline-block;
+  border-radius: 10px;
+}
+.playerProgress .progressbar_current {
+  height: inherit;
+  width: 40%;
+  background-color: #a3b3ce;
+  border-radius: 10px;
+}
+.playerProgress .progressTime {
+  margin-top: 2px;
+  color: #71829e;
+  font-weight: 700;
+  font-size: 16px;
+  opacity: 0.7;
+}
+
+
 [v-cloak] {
   display: none;
 }

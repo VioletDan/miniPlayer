@@ -5,6 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700&display=swap&subset=latin-ext" rel="stylesheet" />
   <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css" />
   <link rel="stylesheet" href="./css/main2.css" />
   <title>Mini Player</title>
@@ -21,23 +22,38 @@
             </div>
           </transition-group>
         </div>
-        <div class="control">
-          <div class="favorite control-item"></div>
+        <div class="control" v-if="currentMusicList">
+          <div class="control-item favorite" :class="{ active: currentMusicList.favorited}" @click="favorite">
+            <i class="iconfont icon-xiai"></i>
+          </div>
           <div class="control-item">
-            <a href="http://" class="iconfont icon-fenxiang"></a>
+            <a :href="currentMusicList.url" class="iconfont icon-fenxiang" target="_blank"></a>
           </div>
-          <div class="control-item prevBtn">
-            <i class="iconfont icon-fenxiang"></i>
+          <div class="control-item prevBtn common-item" @click="prevTrack">
+            <i class="iconfont icon-yduishangyiqu"></i>
           </div>
-          <div class="control-item nextBtn">
-            <i class="iconfont icon-fenxiang"></i>
+          <div class="control-item nextBtn common-item" @click="nextTrack">
+            <i class="iconfont icon-yduixiayiqu"></i>
           </div>
-          <div class="control-item playBtn">
-            <i class="iconfont icon-fenxiang"></i>
+          <div class="control-item playBtn common-item" @click="playClick">
+            <i class="iconfont icon-zanting" v-if="isTimePlaying"></i>
+            <i class="iconfont icon-bofang" v-else></i>
           </div>
         </div>
       </div>
-      <div class="playerProgress"></div>
+      <div class="playerProgress">
+        <div class="progressTop">
+          <div class="albumInfo">
+            <div class="name">{{currentMusicList.name}}</div>
+            <div class="track">{{currentMusicList.artist}}</div>
+          </div>
+          <div class="duration">{{duration}}</div>
+        </div>
+        <div class="progressbar" @click="progressbarClick">
+          <div class="progressbar_current" :style="{width:barWidth}"></div>
+        </div>
+        <div class="progressTime">{{currentTime}}</div>
+      </div>
     </div>
   </div>
   <script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>

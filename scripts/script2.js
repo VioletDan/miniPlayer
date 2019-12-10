@@ -3,6 +3,20 @@ new Vue({
   data() {
     return {
       currentListIndex: 0,
+      duration: '00:00', // 音乐时长
+      currentTime: '00:00', // 当前播放时间
+      barWidth: 0,
+      currentMusicList: {
+        index: 0,
+        name: 'Mekanın Sahibi',
+        artist: 'Norm Ender',
+        cover: 'img/1.jpg',
+        source: 'mp3/1.mp3',
+        url: 'https://www.youtube.com/watch?v=z3wAjJXbYzA',
+        favorited: false
+      },
+      audio: null,
+      isTimePlaying: false,
       coverImage: '', // 动画类名
       musicList: [
         {
@@ -126,7 +140,63 @@ new Vue({
     },
     init() {
       var vm = this
-    }
+      this.currentMusicList = this.musicList[0]
+      this.audio = new Audio()
+      this.audio.src = this.currentMusicList.source
+      this.audio.ontimeupdate = function (e) {
+        vm.generateTime()
+      }
+      this.audio.onloadedmetadata = function (e) {
+        vm.generateTime()
+      }
+      this.audio.onended = function (e) {
+
+      }
+    },
+    generateTime() {
+      var width = (this.audio.currentTime / this.audio.duration) * 100
+      this.barWidth = width + '%'
+      var durationMin = Math.floor(this.audio.duration / 60)
+      var durationSec = Math.floor(this.audio.duration - durationMin * 60)
+      var currentTimeMin = Math.floor(this.audio.currentTime / 60)
+      var currentTimeSec = Math.floor(this.audio.currentTime - currentTimeMin * 60)
+
+      if (durationMin < 10) {
+        durationMin = '0' + durationMin
+      }
+      if (durationSec < 10) {
+        durationSec = '0' + durationSec
+      }
+      if (currentTimeMin < 10) {
+        currentTimeMin = '0' + currentTimeMin
+      }
+      if (currentTimeSec < 10) {
+        currentTimeSec = '0' + currentTimeSec
+      }
+
+      this.duration = durationMin + ':' + durationSec
+      this.currentTime = currentTimeMin + ':' + currentTimeSec
+    },
+
+    // 播放
+    playClick() {
+      if(this.audio.paused){
+        this.audio.play()
+        this.isTimePlaying = true
+      }else{
+        this.audio.pause()
+        this.isTimePlaying = false
+      }
+    },
+    // 标注是否喜爱
+    favorite() {
+      this.musicList[this.currentListIndex].favorited = !this.musicList[this.currentListIndex].favorited
+    },
+    // 切换上下首
+    prevTrack() {},
+    nextTrack() {},
+    // 快进
+    progressbarClick() {}
   },
   created() {
     this.loaderImage()
