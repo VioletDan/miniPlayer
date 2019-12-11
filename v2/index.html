@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css?family=Bitter:400,700&display=swap&subset=latin-ext" rel="stylesheet" />
+  <link rel="stylesheet" href="https://meyerweb.com/eric/tools/css/reset/reset.css" />
+  <link rel="stylesheet" href="./css/main2.css" />
+  <title>Mini Player</title>
+</head>
+
+<body>
+  <div class="wrapper" id="app">
+    <div class="player">
+      <div class="playerTop">
+        <div class="cover">
+          <transition-group :name="coverImage">
+            <div class="coverImageItem" v-if="$index == currentListIndex"
+              :style="{ backgroundImage: `url(${item.cover})`}" v-for="(item,$index) in musicList" v-bind:key="$index">
+            </div>
+          </transition-group>
+        </div>
+        <div class="control" v-if="currentMusicList">
+          <div class="control-item favorite" :class="{ active: currentMusicList.favorited}" @click="favorite">
+            <i class="iconfont icon-xiai"></i>
+          </div>
+          <div class="control-item">
+            <a :href="currentMusicList.url" class="iconfont icon-fenxiang" target="_blank"></a>
+          </div>
+          <div class="control-item prevBtn common-item" @click="prevTrack">
+            <i class="iconfont icon-yduishangyiqu"></i>
+          </div>
+          <div class="control-item nextBtn common-item" @click="nextTrack">
+            <i class="iconfont icon-yduixiayiqu"></i>
+          </div>
+          <div class="control-item playBtn common-item" @click="playClick">
+            <i class="iconfont icon-zanting" v-if="isTimePlaying"></i>
+            <i class="iconfont icon-bofang" v-else></i>
+          </div>
+        </div>
+      </div>
+      <div class="playerProgress">
+        <div class="progressTop">
+          <div class="albumInfo">
+            <div class="name">{{currentMusicList.artist}}</div>
+            <div class="track">{{currentMusicList.name}}</div>
+          </div>
+          <div class="duration">{{duration}}</div>
+        </div>
+        <div class="progressbar" @click="progressbarClick" ref="bar">
+          <div class="progressbar_current" :style="{width:barWidth}"></div>
+        </div>
+        <div class="progressTime">{{currentTime}}</div>
+      </div>
+    </div>
+  </div>
+  <script src="https://res.wx.qq.com/open/js/jweixin-1.3.2.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+  <script src="./scripts/base.js"></script>
+  <script src="./scripts/PxLoader.min.js"></script>
+  <script src="./scripts/script2.js"></script>
+</body>
+
+</html>
